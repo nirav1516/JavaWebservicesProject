@@ -1,0 +1,122 @@
+<ns1:deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java" xmlns:ns1="http://xml.apache.org/axis/wsdd/">
+ <ns1:globalConfiguration>
+  <ns1:parameter name="sendMultiRefs" value="true"/>
+  <ns1:parameter name="disablePrettyXML" value="true"/>
+  <ns1:parameter name="adminPassword" value="admin"/>
+  <ns1:parameter name="attachments.Directory" value="C:\Users\Ashok Patel\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\SimpleMarketPlace\WEB-INF\attachments"/>
+  <ns1:parameter name="dotNetSoapEncFix" value="true"/>
+  <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <ns1:parameter name="sendXMLDeclaration" value="true"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
+  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:requestFlow>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="session"/>
+   </ns1:handler>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="request"/>
+    <ns1:parameter name="extension" value=".jwr"/>
+   </ns1:handler>
+  </ns1:requestFlow>
+ </ns1:globalConfiguration>
+ <ns1:handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <ns1:service name="Service" provider="java:RPC" style="wrapped" use="literal">
+  <ns2:operation name="register" qname="ns1:register" returnQName="ns1:registerReturn" returnType="xsd:string" soapAction="" xmlns:ns1="http://Connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
+   <ns2:parameter qname="ns1:fname" type="xsd:string"/>
+   <ns2:parameter qname="ns1:lname" type="xsd:string"/>
+   <ns2:parameter qname="ns1:email" type="xsd:string"/>
+   <ns2:parameter qname="ns1:pwd" type="xsd:string"/>
+  </ns2:operation>
+  <ns1:operation name="login" qname="ns2:login" returnQName="ns2:loginReturn" returnType="ns3:User" soapAction="" xmlns:ns2="http://Connection" xmlns:ns3="http://modelclasses">
+   <ns1:parameter qname="ns2:username" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns2:pwd" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="insertproduct" qname="ns4:insertproduct" returnQName="ns4:insertproductReturn" returnType="xsd:string" soapAction="" xmlns:ns4="http://Connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns4:uid" type="xsd:string"/>
+   <ns1:parameter qname="ns4:catId" type="xsd:string"/>
+   <ns1:parameter qname="ns4:proname" type="xsd:string"/>
+   <ns1:parameter qname="ns4:prodesc" type="xsd:string"/>
+   <ns1:parameter qname="ns4:proprice" type="xsd:string"/>
+   <ns1:parameter qname="ns4:proqty" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="deleteproduct" qname="ns5:deleteproduct" returnQName="ns5:deleteproductReturn" returnType="xsd:string" soapAction="" xmlns:ns5="http://Connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns5:proid" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="fetchproducts" qname="ns6:fetchproducts" returnQName="ns6:fetchproductsReturn" returnType="ns7:Product" soapAction="" xmlns:ns6="http://Connection" xmlns:ns7="http://modelclasses">
+   <ns1:parameter qname="ns6:procatid" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns6:uid" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="insertcatalog" qname="ns8:insertcatalog" returnQName="ns8:insertcatalogReturn" returnType="xsd:string" soapAction="" xmlns:ns8="http://Connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns8:catname" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="fetchcatlogs" qname="ns9:fetchcatlogs" returnQName="ns9:fetchcatlogsReturn" returnType="ns10:Catalog" soapAction="" xmlns:ns10="http://modelclasses" xmlns:ns9="http://Connection"/>
+  <ns1:operation name="gettotalorder" qname="ns11:gettotalorder" returnQName="ns11:gettotalorderReturn" returnType="xsd:double" soapAction="" xmlns:ns11="http://Connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns11:uid" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="fetchcartdata" qname="ns12:fetchcartdata" returnQName="ns12:fetchcartdataReturn" returnType="ns13:Cart" soapAction="" xmlns:ns12="http://Connection" xmlns:ns13="http://modelclasses">
+   <ns1:parameter qname="ns12:uid" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="generateOrder" qname="ns14:generateOrder" returnQName="ns14:generateOrderReturn" returnType="xsd:string" soapAction="" xmlns:ns14="http://Connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns14:uid" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="gettotalcart" qname="ns15:gettotalcart" returnQName="ns15:gettotalcartReturn" returnType="xsd:double" soapAction="" xmlns:ns15="http://Connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns15:uid" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="fetchMyproducts" qname="ns16:fetchMyproducts" returnQName="ns16:fetchMyproductsReturn" returnType="ns17:Product" soapAction="" xmlns:ns16="http://Connection" xmlns:ns17="http://modelclasses">
+   <ns1:parameter qname="ns16:uid" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="addproducttocart" qname="ns18:addproducttocart" returnQName="ns18:addproducttocartReturn" returnType="xsd:string" soapAction="" xmlns:ns18="http://Connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns18:uid" type="xsd:string"/>
+   <ns1:parameter qname="ns18:proid" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="fetchorderdata" qname="ns19:fetchorderdata" returnQName="ns19:fetchorderdataReturn" returnType="ns20:Order" soapAction="" xmlns:ns19="http://Connection" xmlns:ns20="http://modelclasses">
+   <ns1:parameter qname="ns19:uid" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="fetchSellingHistory" qname="ns21:fetchSellingHistory" returnQName="ns21:fetchSellingHistoryReturn" returnType="ns22:Sellinghistory" soapAction="" xmlns:ns21="http://Connection" xmlns:ns22="http://modelclasses">
+   <ns1:parameter qname="ns21:uid" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="insertcatalog addproducttocart fetchcatlogs fetchcartdata fetchproducts fetchSellingHistory fetchorderdata register generateOrder gettotalorder gettotalcart deleteproduct fetchMyproducts login insertproduct"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="Service"/>
+  <ns1:parameter name="className" value="Connection.Service"/>
+  <ns1:parameter name="wsdlServicePort" value="Service"/>
+  <ns1:parameter name="schemaQualified" value="http://Connection,http://modelclasses"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://Connection"/>
+  <ns1:parameter name="wsdlServiceElement" value="ServiceService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns23:Sellinghistory" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:modelclasses.Sellinghistory" xmlns:ns23="http://modelclasses"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns24:Product" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:modelclasses.Product" xmlns:ns24="http://modelclasses"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns25:Catalog" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:modelclasses.Catalog" xmlns:ns25="http://modelclasses"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns26:Order" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:modelclasses.Order" xmlns:ns26="http://modelclasses"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns27:Cart" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:modelclasses.Cart" xmlns:ns27="http://modelclasses"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns28:User" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:modelclasses.User" xmlns:ns28="http://modelclasses"/>
+ </ns1:service>
+ <ns1:service name="AdminService" provider="java:MSG">
+  <ns1:parameter name="allowedMethods" value="AdminService"/>
+  <ns1:parameter name="enableRemoteAdmin" value="false"/>
+  <ns1:parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <ns1:namespace>http://xml.apache.org/axis/wsdd/</ns1:namespace>
+ </ns1:service>
+ <ns1:service name="Version" provider="java:RPC">
+  <ns1:parameter name="allowedMethods" value="getVersion"/>
+  <ns1:parameter name="className" value="org.apache.axis.Version"/>
+ </ns1:service>
+ <ns1:transport name="http">
+  <ns1:requestFlow>
+   <ns1:handler type="URLMapper"/>
+   <ns1:handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </ns1:requestFlow>
+  <ns1:parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <ns1:parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </ns1:transport>
+ <ns1:transport name="local">
+  <ns1:responseFlow>
+   <ns1:handler type="LocalResponder"/>
+  </ns1:responseFlow>
+ </ns1:transport>
+</ns1:deployment>

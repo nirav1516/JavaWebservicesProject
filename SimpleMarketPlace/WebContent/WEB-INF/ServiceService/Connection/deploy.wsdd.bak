@@ -1,0 +1,129 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ServiceService WSDL service -->
+
+  <service name="Service" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://Connection"/>
+      <parameter name="wsdlServiceElement" value="ServiceService"/>
+      <parameter name="schemaQualified" value="http://Connection,http://modelclasses"/>
+      <parameter name="wsdlServicePort" value="Service"/>
+      <parameter name="className" value="Connection.ServiceSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="Service"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="register" qname="operNS:register" xmlns:operNS="http://Connection" returnQName="retNS:registerReturn" xmlns:retNS="http://Connection" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:fname" xmlns:pns="http://Connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:lname" xmlns:pns="http://Connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:email" xmlns:pns="http://Connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:pwd" xmlns:pns="http://Connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="login" qname="operNS:login" xmlns:operNS="http://Connection" returnQName="retNS:loginReturn" xmlns:retNS="http://Connection" returnType="rtns:User" xmlns:rtns="http://modelclasses" soapAction="" >
+        <parameter qname="pns:username" xmlns:pns="http://Connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:pwd" xmlns:pns="http://Connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="insertproduct" qname="operNS:insertproduct" xmlns:operNS="http://Connection" returnQName="retNS:insertproductReturn" xmlns:retNS="http://Connection" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:uid" xmlns:pns="http://Connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:catId" xmlns:pns="http://Connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:proname" xmlns:pns="http://Connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:prodesc" xmlns:pns="http://Connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:proprice" xmlns:pns="http://Connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:proqty" xmlns:pns="http://Connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="deleteproduct" qname="operNS:deleteproduct" xmlns:operNS="http://Connection" returnQName="retNS:deleteproductReturn" xmlns:retNS="http://Connection" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:proid" xmlns:pns="http://Connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="fetchproducts" qname="operNS:fetchproducts" xmlns:operNS="http://Connection" returnQName="retNS:fetchproductsReturn" xmlns:retNS="http://Connection" returnType="rtns:Product" xmlns:rtns="http://modelclasses" soapAction="" >
+        <parameter qname="pns:procatid" xmlns:pns="http://Connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:uid" xmlns:pns="http://Connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="insertcatalog" qname="operNS:insertcatalog" xmlns:operNS="http://Connection" returnQName="retNS:insertcatalogReturn" xmlns:retNS="http://Connection" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:catname" xmlns:pns="http://Connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="fetchcatlogs" qname="operNS:fetchcatlogs" xmlns:operNS="http://Connection" returnQName="retNS:fetchcatlogsReturn" xmlns:retNS="http://Connection" returnType="rtns:Catalog" xmlns:rtns="http://modelclasses" soapAction="" >
+      </operation>
+      <operation name="gettotalorder" qname="operNS:gettotalorder" xmlns:operNS="http://Connection" returnQName="retNS:gettotalorderReturn" xmlns:retNS="http://Connection" returnType="rtns:double" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:uid" xmlns:pns="http://Connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="fetchcartdata" qname="operNS:fetchcartdata" xmlns:operNS="http://Connection" returnQName="retNS:fetchcartdataReturn" xmlns:retNS="http://Connection" returnType="rtns:Cart" xmlns:rtns="http://modelclasses" soapAction="" >
+        <parameter qname="pns:uid" xmlns:pns="http://Connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="generateOrder" qname="operNS:generateOrder" xmlns:operNS="http://Connection" returnQName="retNS:generateOrderReturn" xmlns:retNS="http://Connection" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:uid" xmlns:pns="http://Connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="gettotalcart" qname="operNS:gettotalcart" xmlns:operNS="http://Connection" returnQName="retNS:gettotalcartReturn" xmlns:retNS="http://Connection" returnType="rtns:double" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:uid" xmlns:pns="http://Connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="fetchMyproducts" qname="operNS:fetchMyproducts" xmlns:operNS="http://Connection" returnQName="retNS:fetchMyproductsReturn" xmlns:retNS="http://Connection" returnType="rtns:Product" xmlns:rtns="http://modelclasses" soapAction="" >
+        <parameter qname="pns:uid" xmlns:pns="http://Connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="addproducttocart" qname="operNS:addproducttocart" xmlns:operNS="http://Connection" returnQName="retNS:addproducttocartReturn" xmlns:retNS="http://Connection" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:uid" xmlns:pns="http://Connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:proid" xmlns:pns="http://Connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="fetchorderdata" qname="operNS:fetchorderdata" xmlns:operNS="http://Connection" returnQName="retNS:fetchorderdataReturn" xmlns:retNS="http://Connection" returnType="rtns:Order" xmlns:rtns="http://modelclasses" soapAction="" >
+        <parameter qname="pns:uid" xmlns:pns="http://Connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="fetchSellingHistory" qname="operNS:fetchSellingHistory" xmlns:operNS="http://Connection" returnQName="retNS:fetchSellingHistoryReturn" xmlns:retNS="http://Connection" returnType="rtns:Sellinghistory" xmlns:rtns="http://modelclasses" soapAction="" >
+        <parameter qname="pns:uid" xmlns:pns="http://Connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="insertcatalog addproducttocart fetchcatlogs fetchcartdata fetchproducts fetchSellingHistory fetchorderdata register generateOrder gettotalorder gettotalcart deleteproduct fetchMyproducts login insertproduct"/>
+
+      <typeMapping
+        xmlns:ns="http://modelclasses"
+        qname="ns:Sellinghistory"
+        type="java:modelclasses.Sellinghistory"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://modelclasses"
+        qname="ns:Product"
+        type="java:modelclasses.Product"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://modelclasses"
+        qname="ns:Catalog"
+        type="java:modelclasses.Catalog"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://modelclasses"
+        qname="ns:Order"
+        type="java:modelclasses.Order"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://modelclasses"
+        qname="ns:Cart"
+        type="java:modelclasses.Cart"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://modelclasses"
+        qname="ns:User"
+        type="java:modelclasses.User"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>
