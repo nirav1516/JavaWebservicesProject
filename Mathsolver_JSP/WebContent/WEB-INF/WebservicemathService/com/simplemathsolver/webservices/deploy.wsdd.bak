@@ -1,0 +1,35 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from WebservicemathService WSDL service -->
+
+  <service name="Webservicemath" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://webservices.simplemathsolver.com"/>
+      <parameter name="wsdlServiceElement" value="WebservicemathService"/>
+      <parameter name="schemaQualified" value="http://webservices.simplemathsolver.com"/>
+      <parameter name="wsdlServicePort" value="Webservicemath"/>
+      <parameter name="className" value="com.simplemathsolver.webservices.WebservicemathSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="Webservicemath"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="checkprime" qname="operNS:checkprime" xmlns:operNS="http://webservices.simplemathsolver.com" returnQName="retNS:checkprimeReturn" xmlns:retNS="http://webservices.simplemathsolver.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:n" xmlns:pns="http://webservices.simplemathsolver.com" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="isPrime" qname="operNS:isPrime" xmlns:operNS="http://webservices.simplemathsolver.com" returnQName="retNS:isPrimeReturn" xmlns:retNS="http://webservices.simplemathsolver.com" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:no" xmlns:pns="http://webservices.simplemathsolver.com" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="findprimeseries" qname="operNS:findprimeseries" xmlns:operNS="http://webservices.simplemathsolver.com" returnQName="retNS:findprimeseriesReturn" xmlns:retNS="http://webservices.simplemathsolver.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:num" xmlns:pns="http://webservices.simplemathsolver.com" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="isPrime checkprime findprimeseries"/>
+
+  </service>
+</deployment>

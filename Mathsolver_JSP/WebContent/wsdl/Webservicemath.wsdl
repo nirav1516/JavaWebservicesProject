@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://webservices.simplemathsolver.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://webservices.simplemathsolver.com" xmlns:intf="http://webservices.simplemathsolver.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://webservices.simplemathsolver.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="checkprime">
+    <complexType>
+     <sequence>
+      <element name="n" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="checkprimeResponse">
+    <complexType>
+     <sequence>
+      <element name="checkprimeReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="isPrime">
+    <complexType>
+     <sequence>
+      <element name="no" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="isPrimeResponse">
+    <complexType>
+     <sequence>
+      <element name="isPrimeReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="findprimeseries">
+    <complexType>
+     <sequence>
+      <element name="num" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="findprimeseriesResponse">
+    <complexType>
+     <sequence>
+      <element name="findprimeseriesReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="findprimeseriesResponse">
+
+      <wsdl:part element="impl:findprimeseriesResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="findprimeseriesRequest">
+
+      <wsdl:part element="impl:findprimeseries" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="isPrimeResponse">
+
+      <wsdl:part element="impl:isPrimeResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="isPrimeRequest">
+
+      <wsdl:part element="impl:isPrime" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="checkprimeRequest">
+
+      <wsdl:part element="impl:checkprime" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="checkprimeResponse">
+
+      <wsdl:part element="impl:checkprimeResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Webservicemath">
+
+      <wsdl:operation name="checkprime">
+
+         <wsdl:input message="impl:checkprimeRequest" name="checkprimeRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:checkprimeResponse" name="checkprimeResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="isPrime">
+
+         <wsdl:input message="impl:isPrimeRequest" name="isPrimeRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:isPrimeResponse" name="isPrimeResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findprimeseries">
+
+         <wsdl:input message="impl:findprimeseriesRequest" name="findprimeseriesRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:findprimeseriesResponse" name="findprimeseriesResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="WebservicemathSoapBinding" type="impl:Webservicemath">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="checkprime">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="checkprimeRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="checkprimeResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="isPrime">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="isPrimeRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="isPrimeResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findprimeseries">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="findprimeseriesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="findprimeseriesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="WebservicemathService">
+
+      <wsdl:port binding="impl:WebservicemathSoapBinding" name="Webservicemath">
+
+         <wsdlsoap:address location="http://localhost:8080/Mathsolver_JSP/services/Webservicemath"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

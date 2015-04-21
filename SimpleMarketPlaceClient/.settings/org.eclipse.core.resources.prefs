@@ -1,0 +1,12 @@
+eclipse.preferences.version=1
+encoding//WebContent/View/main.jsp=UTF-8
+encoding//src/Connection/Service.java=UTF-8
+encoding//src/Connection/ServiceService.java=UTF-8
+encoding//src/Connection/ServiceServiceLocator.java=UTF-8
+encoding//src/Connection/ServiceSoapBindingStub.java=UTF-8
+encoding//src/modelclasses/Cart.java=UTF-8
+encoding//src/modelclasses/Catalog.java=UTF-8
+encoding//src/modelclasses/Order.java=UTF-8
+encoding//src/modelclasses/Product.java=UTF-8
+encoding//src/modelclasses/Sellinghistory.java=UTF-8
+encoding//src/modelclasses/User.java=UTF-8
